@@ -1,117 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Asistente interactivo de derivadas - Pensamiento Matemático III" />
-  <title>Asistente de Derivadas - Pensamiento Matemático III</title>
-
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- MathJax para fórmulas -->
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#5D5CDE'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Derivadas - Pensamiento Matemático III</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE'
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-
-  <style>
-    .formula-card {
-      transition: all 0.3s ease;
-    }
-    .formula-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(93, 92, 222, 0.2);
-    }
-    .active-tab {
-      background: linear-gradient(135deg, #5D5CDE 0%, #7B7AFF 100%);
-      color: white;
-    }
-    .math-formula {
-      font-size: 1.1rem;
-    }
-  </style>
+    </script>
+    <style>
+        .formula-card {
+            transition: all 0.3s ease;
+        }
+        .formula-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(93, 92, 222, 0.2);
+        }
+        .active-tab {
+            background: linear-gradient(135deg, #5D5CDE 0%, #7B7AFF 100%);
+            color: white;
+        }
+        .math-formula {
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
-
 <body class="bg-white dark:bg-[#181818] text-gray-900 dark:text-gray-100 transition-colors">
 
-  <!-- HEADER -->
-  <header class="bg-gradient-to-r from-primary to-purple-600 text-white py-6 px-4 shadow-lg">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-2xl md:text-3xl font-bold">📐 Asistente de Derivadas</h1>
-      <p class="text-sm md:text-base mt-2 opacity-90">Pensamiento Matemático III - Guía Interactiva de Fórmulas</p>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary to-purple-600 text-white py-6 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-2xl md:text-3xl font-bold">📐 Asistente de Derivadas</h1>
+            <p class="text-sm md:text-base mt-2 opacity-90">Pensamiento Matemático III - Guía Interactiva de Fórmulas</p>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap gap-2 mb-8">
+            <button onclick="showSection('formulas')" id="tab-formulas" class="active-tab px-4 md:px-6 py-3 rounded-lg font-semibold transition-all text-base">
+                📚 Fórmulas
+            </button>
+            <button onclick="showSection('selector')" id="tab-selector" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-600 text-base">
+                🎯 Selector
+            </button>
+            <button onclick="showSection('ejercicios')" id="tab-ejercicios" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-600 text-base">
+                📝 Ejercicios
+            </button>
+            <button onclick="showSection('quiz')" id="tab-quiz" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-600 text-base">
+                ✍️ Práctica
+            </button>
+        </div>
+
+        <!-- Sección: Fórmulas -->
+        <div id="section-formulas" class="space-y-6">
+            <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded">
+                <p class="text-base"><strong>💡 Tip del Profesor:</strong> Identifica primero el tipo de función, luego aplica la fórmula correspondiente.</p>
+            </div>
+
+            <!-- Categorías de Fórmulas -->
+            <div class="space-y-4">
+
+                <!-- Reglas Básicas -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h2 class="text-xl font-bold mb-4 text-primary">🔷 Reglas Básicas</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Constante</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(c) = 0$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Ejemplo: \(\frac{d}{dx}(5) = 0\)</p>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Identidad</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(x) = 1$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">La derivada de x es 1</p>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Regla de la Potencia</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(x^n) = nx^{n-1}$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Ejemplo: \(\frac{d}{dx}(x^3) = 3x^2\)</p>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Múltiplo Constante</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(cu) = cu'$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Ejemplo: \(\frac{d}{dx}(5x^2) = 5(2x) = 10x\)</p>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Función entre Constante</h3>
+                            <div class="math-formula">$$\frac{d}{dx}\left(\frac{u}{c}\right) = \frac{u'}{c}$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Ejemplo: \(\frac{d}{dx}\left(\frac{x^2}{3}\right) = \frac{2x}{3}\)</p>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Constante entre Función</h3>
+                            <div class="math-formula">$$\frac{d}{dx}\left(\frac{c}{u}\right) = -\frac{cu'}{u^2}$$</div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Ejemplo: \(\frac{d}{dx}\left(\frac{5}{x}\right) = -\frac{5}{x^2}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funciones Trigonométricas -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h2 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">🔷 Funciones Trigonométricas</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-purple-200 dark:border-purple-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Seno</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(\sin x) = \cos x$$</div>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-purple-200 dark:border-purple-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Coseno</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(\cos x) = -\sin x$$</div>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-purple-200 dark:border-purple-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Tangente</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(\tan x) = \sec^2 x$$</div>
+                        </div>
+                        <div class="formula-card bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-purple-200 dark:border-purple-600">
+                            <h3 class="font-semibold mb-2 text-gray-700 dark:text-gray-200">Cotangente</h3>
+                            <div class="math-formula">$$\frac{d}{dx}(\cot x) = -\csc^2 x$$</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Sección: Selector -->
+        <div id="section-selector" class="hidden space-y-6">
+            <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded">
+                <p class="text-base"><strong>🎯 Selector de Funciones:</strong> Selecciona una función y obtén su derivada automáticamente.</p>
+            </div>
+
+            <div class="space-y-4">
+                <label for="funcionSelect" class="block font-semibold">Elige una función:</label>
+                <select id="funcionSelect" class="border rounded-lg p-2 w-full md:w-1/2">
+                    <option value="x^2">x²</option>
+                    <option value="x^3">x³</option>
+                    <option value="5*x">5x</option>
+                    <option value="sin(x)">sin(x)</option>
+                    <option value="cos(x)">cos(x)</option>
+                </select>
+                <div id="resultadoSelector" class="mt-4 p-4 bg-white dark:bg-gray-700 rounded shadow">
+                    <span>Resultado: </span><span id="derivadaSelect">—</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección: Ejercicios -->
+        <div id="section-ejercicios" class="hidden space-y-6">
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded">
+                <p class="text-base"><strong>📝 Ejercicios Propuestos:</strong> Intenta resolver estas derivadas aplicando las fórmulas vistas.</p>
+            </div>
+
+            <ul class="list-decimal list-inside space-y-2">
+                <li>Deriva: \(f(x) = x^4 + 3x^2\)</li>
+                <li>Deriva: \(f(x) = 7x + 5\)</li>
+                <li>Deriva: \(f(x) = \sin(x) + \cos(x)\)</li>
+                <li>Deriva: \(f(x) = \frac{5}{x}\)</li>
+            </ul>
+        </div>
+
+        <!-- Sección: Quiz -->
+        <div id="section-quiz" class="hidden space-y-6">
+            <div class="bg-pink-50 dark:bg-pink-900/20 border-l-4 border-pink-500 p-4 rounded">
+                <p class="text-base"><strong>✍️ Práctica Interactiva:</strong> Calcula la derivada correcta:</p>
+            </div>
+
+            <div class="space-y-4">
+                <p>Deriva \(f(x) = x^3\)</p>
+                <input type="text" id="quiz1" class="border rounded-lg p-2 w-full md:w-1/3" placeholder="Tu respuesta">
+                <button onclick="checkQuiz('quiz1','3x^2')" class="px-4 py-2 bg-primary text-white rounded-lg mt-2">Verificar</button>
+                <p id="resultadoQuiz1" class="mt-2 font-semibold"></p>
+            </div>
+        </div>
+
     </div>
-  </header>
 
-  <!-- CONTENIDO -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <div class="text-center mb-6">
-      <p class="text-base md:text-lg text-gray-700 dark:text-gray-300">
-        💻 Bienvenido al <strong>Asistente de Derivadas</strong>. Selecciona una pestaña para explorar fórmulas, practicar o analizar funciones.
-      </p>
-    </div>
+    <script>
+        function showSection(section) {
+            const sections = ['formulas','selector','ejercicios','quiz'];
+            sections.forEach(s => {
+                document.getElementById('section-' + s).classList.add('hidden');
+                document.getElementById('tab-' + s).classList.remove('active-tab');
+            });
+            document.getElementById('section-' + section).classList.remove('hidden');
+            document.getElementById('tab-' + section).classList.add('active-tab');
+        }
 
-    <!-- Botones de navegación -->
-    <div class="flex flex-wrap justify-center gap-2 mb-8">
-      <button onclick="showSection('formulas')" id="tab-formulas" class="active-tab px-4 md:px-6 py-3 rounded-lg font-semibold text-base">
-        📚 Fórmulas
-      </button>
-      <button onclick="showSection('selector')" id="tab-selector" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold text-base">
-        🎯 Selector
-      </button>
-      <button onclick="showSection('ejercicios')" id="tab-ejercicios" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold text-base">
-        📝 Ejercicios
-      </button>
-      <button onclick="showSection('quiz')" id="tab-quiz" class="bg-gray-200 dark:bg-gray-700 px-4 md:px-6 py-3 rounded-lg font-semibold text-base">
-        ✍️ Práctica
-      </button>
-    </div>
+        // Selector de derivadas simple
+        const derivadas = {
+            "x^2": "2x",
+            "x^3": "3x^2",
+            "5*x": "5",
+            "sin(x)": "cos(x)",
+            "cos(x)": "-sin(x)"
+        };
 
-    <!-- SECCIONES -->
-    <section id="section-formulas">
-      <h2 class="text-xl font-bold text-primary mb-4">📘 Reglas de Derivación</h2>
-      <p class="text-gray-700 dark:text-gray-300 mb-6">Consulta las principales fórmulas de derivación clasificadas por tipo de función.</p>
+        document.getElementById('funcionSelect').addEventListener('change', (e) => {
+            const val = e.target.value;
+            document.getElementById('derivadaSelect').innerText = derivadas[val] || "—";
+        });
 
-      <!-- Aquí puedes conservar todo el contenido de tus secciones de fórmulas (reglas básicas, trigonométricas, etc.)
-           No requieren modificación para GitHub Pages -->
-    </section>
-
-    <!-- Las demás secciones (selector, ejercicios, quiz) también se mantienen igual -->
-  </main>
-
-  <footer class="text-center py-6 text-sm text-gray-600 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
-    © 2025 Pensamiento Matemático III · Desarrollado por Jeise Vanessa Rodríguez
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Dark mode automático
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    }
-
-    // Cambiar entre secciones
-    function showSection(section) {
-      document.querySelectorAll('[id^="section-"]').forEach(el => el.classList.add('hidden'));
-      document.getElementById(`section-${section}`).classList.remove('hidden');
-
-      document.querySelectorAll('[id^="tab-"]').forEach(el => {
-        el.classList.remove('active-tab');
-        el.classList.add('bg-gray-200', 'dark:bg-gray-700');
-      });
-      document.getElementById(`tab-${section}`).classList.add('active-tab');
-      document.getElementById(`tab-${section}`).classList.remove('bg-gray-200', 'dark:bg-gray-700');
-    }
-  </script>
+        function checkQuiz(inputId, answer) {
+            const val = document.getElementById(inputId).value.trim();
+            const resultado = document.getElementById('resultado' + inputId.charAt(inputId.length-1));
+            if(val === answer) {
+                resultado.innerText = "✅ Correcto!";
+                resultado.classList.add('text-green-600');
+                resultado.classList.remove('text-red-600');
+            } else {
+                resultado.innerText = "❌ Incorrecto. Intenta de nuevo.";
+                resultado.classList.add('text-red-600');
+                resultado.classList.remove('text-green-600');
+            }
+        }
+    </script>
 </body>
 </html>
